@@ -5,8 +5,8 @@ from tastypie import fields
 
 
 class PostResource(ModelResource):
-    text = fields.CharField(attribute="text", use_in="list")
-    is_public = fields.BooleanField(attribute="is_public", null = True, use_in="detail")
+    text = fields.CharField(attribute="text")
+    is_public = fields.BooleanField(attribute="is_public", null = True)
     # comments = fields.ToManyField("qblogproj.api.CommentResource", related_name='post', full=True)
     comments = fields.ToManyField("qblogproj.post.api.CommentResource", full=True, null=True, attribute=lambda bundle: Comment.objects.filter(post=bundle.obj), use_in='detail')
 
